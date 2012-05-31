@@ -95,14 +95,14 @@ build-check:
 	fi
 
 build: build-check
-	make -C $(BB_DIR)
+	$(MAKE) -C $(BB_DIR)
 	echo "Busybox binary at '$(BB_DIR)/busybox'"
 
 
 clean:
-	make -C $(BB_DIR) clean
+	$(MAKE) -C $(BB_DIR) clean
 	# undo patches
-	cd $(BB_DIR) && git checkout . && git clean -f -d
+	cd $(BB_DIR) && git checkout HEAD -- . && git clean -f -d -x
 
 dist-clean: distclean
 distclean:
